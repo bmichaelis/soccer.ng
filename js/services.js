@@ -8,21 +8,22 @@ angular.module('myApp.services', []).
 
 // phonegap ready service - listens to deviceready
 myApp.factory('phonegapReady', function() {
+    console.log("phonegapReady()"); 
     return function (fn) {
         var queue = [];
         var impl = function () {
-        queue.push(Array.prototype.slice.call(arguments));
-    };
+            queue.push(Array.prototype.slice.call(arguments));
+        };
               
-    document.addEventListener('deviceready', function () {
-        queue.forEach(function (args) {
-            fn.apply(this, args);
-        });
-        impl = fn;
-    }, false);
+        document.addEventListener('deviceready', function () {
+            queue.forEach(function (args) {
+                fn.apply(this, args);
+            });
+            impl = fn;
+        }, false);
               
-    return function () {
-        return impl.apply(this, arguments);
+        return function () {
+            return impl.apply(this, arguments);
         };
     };
 });
@@ -83,6 +84,7 @@ myApp.factory('accelerometer', function ($rootScope, phonegapReady) {
 myApp.factory('notification', function ($rootScope, phonegapReady) {
     return {
         alert: phonegapReady(function (message, alertCallback, title, buttonName) {
+            console.log("notification::alert()");
             navigator.notification.alert(message, function () {
                 var that = this,
                     args = arguments;

@@ -19,6 +19,7 @@ function HomeCtrl($scope,navSvc,$rootScope) {
 
 function NotificationCtrl($scope) {
     $scope.alertNotify = function() {
+        console.log("alertNotify()");
         navigator.notification.alert("Sample Alert",function() {console.log("Alert success")},"My Alert","Close");
     };
     
