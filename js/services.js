@@ -8,7 +8,6 @@ angular.module('myApp.services', []).
 
 // phonegap ready service - listens to deviceready
 myApp.factory('phonegapReady', function() {
-    console.log("phonegapReady()"); 
     return function (fn) {
         var queue = [];
         var impl = function () {
